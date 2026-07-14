@@ -17,7 +17,7 @@ Requires PHP: 7.4
 
 body {
 	margin: 0;
-	background: rgba(0, 0, 0, 0.05);
+	background: #ffffff;
 	font-family: 'Inter', system-ui, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
