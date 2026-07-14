@@ -34,23 +34,40 @@ function wildcat_growth_assets() {
 		'wildcat-growth-style',
 		get_stylesheet_uri(),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		wildcat_growth_asset_version( '/style.css' )
 	);
 
 	wp_enqueue_style(
 		'wildcat-growth-landing',
 		get_template_directory_uri() . '/assets/css/landing.css',
 		array( 'wildcat-growth-style' ),
-		wp_get_theme()->get( 'Version' )
+		wildcat_growth_asset_version( '/assets/css/landing.css' )
 	);
 
 	wp_enqueue_script(
 		'wildcat-growth-landing',
 		get_template_directory_uri() . '/assets/js/landing.js',
 		array(),
-		wp_get_theme()->get( 'Version' ),
+		wildcat_growth_asset_version( '/assets/js/landing.js' ),
 		true
 	);
+}
+
+/**
+ * Version an asset by its file modification time so browsers fetch a fresh
+ * copy every time the CSS/JS actually changes, instead of caching across
+ * deploys (the theme's style.css "Version:" header only changes when we
+ * remember to bump it by hand).
+ *
+ * @param string $relative_path Path relative to the theme root, e.g. '/assets/css/landing.css'.
+ * @return string
+ */
+function wildcat_growth_asset_version( $relative_path ) {
+	$file = get_template_directory() . $relative_path;
+	if ( file_exists( $file ) ) {
+		return (string) filemtime( $file );
+	}
+	return wp_get_theme()->get( 'Version' );
 }
 add_action( 'wp_enqueue_scripts', 'wildcat_growth_assets' );
 
@@ -122,6 +139,59 @@ function wildcat_growth_lines_to_array( $text ) {
 	$lines = array_map( 'trim', $lines );
 	return array_values( array_filter( $lines, 'strlen' ) );
 }
+
+/**
+ * One-time cleanup: if ACF already saved field VALUES to the database
+ * containing the old "Wildcat Lite" copy (e.g. because the page was opened
+ * and saved in wp-admin before this rename), those saved values now take
+ * priority over the new code defaults and keep showing the old text. This
+ * sweeps known text fields on the landing page(s) and swaps the wording,
+ * then marks itself done so it only ever runs once.
+ */
+function wildcat_growth_migrate_lite_to_growth_copy() {
+	if ( get_option( 'wildcat_growth_rebrand_migrated_v1' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'get_field' ) ) {
+		return; // Wait until ACF is active so we don't mark this done prematurely.
+	}
+
+	$post_ids = array();
+	$front_id = (int) get_option( 'page_on_front' );
+	if ( $front_id ) {
+		$post_ids[] = $front_id;
+	}
+	$templated = get_posts( array(
+		'post_type'      => 'page',
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+		'meta_key'       => '_wp_page_template', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+		'meta_value'     => 'page-templates/template-wildcat-lite-landing.php', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+	) );
+	$post_ids  = array_unique( array_merge( $post_ids, $templated ) );
+
+	$text_fields = array(
+		'hero_paragraph',
+		'why_eyebrow',
+		'why_paragraph',
+		'faq_1_question',
+		'faq_1_answer',
+		'faq_5_question',
+		'faq_5_answer',
+	);
+
+	foreach ( $post_ids as $post_id ) {
+		foreach ( $text_fields as $field_name ) {
+			$value = get_post_meta( $post_id, $field_name, true );
+			if ( is_string( $value ) && false !== strpos( $value, 'Wildcat Lite' ) ) {
+				update_post_meta( $post_id, $field_name, str_replace( 'Wildcat Lite', 'Wildcat Growth', $value ) );
+			}
+		}
+	}
+
+	update_option( 'wildcat_growth_rebrand_migrated_v1', 1 );
+}
+add_action( 'init', 'wildcat_growth_migrate_lite_to_growth_copy', 20 );
 
 /**
  * Register the standalone landing page template so it can be assigned to any Page.

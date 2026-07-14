@@ -6,7 +6,7 @@
 }
 
 .wl-wrap {
-	background: #faf8f3;
+	background: rgba(0, 0, 0, 0.05);
 	color: #1c1a15;
 	width: 100%;
 	overflow-x: hidden;
@@ -112,7 +112,7 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
-	background: #eee9dc;
+	background: rgba(0, 0, 0, 0.05);
 	border-radius: 100px;
 	padding: 7px 16px;
 	font-size: 13px;
@@ -357,7 +357,7 @@
 }
 
 .wl-why-card {
-	background: #faf8f3;
+	background: rgba(0, 0, 0, 0.05);
 	padding: 32px 28px;
 }
 
@@ -659,7 +659,7 @@
 }
 
 .wl-contact-inner {
-	background: #eee9dc;
+	background: rgba(0, 0, 0, 0.05);
 	border-radius: 28px;
 	padding: clamp(40px, 6vw, 72px) clamp(28px, 6vw, 64px);
 	display: grid;
