@@ -55,6 +55,75 @@ function wildcat_growth_assets() {
 add_action( 'wp_enqueue_scripts', 'wildcat_growth_assets' );
 
 /**
+ * Load the ACF field group definitions (no-ops safely if ACF isn't active).
+ */
+require_once get_template_directory() . '/inc/acf-fields.php';
+
+/**
+ * Warn in wp-admin if the free ACF plugin isn't installed/active, since the
+ * landing page content fields depend on it.
+ */
+function wildcat_growth_acf_admin_notice() {
+	if ( function_exists( 'get_field' ) ) {
+		return;
+	}
+	if ( ! current_user_can( 'activate_plugins' ) ) {
+		return;
+	}
+	echo '<div class="notice notice-warning"><p><strong>Wildcat Growth theme:</strong> install and activate the free <a href="' . esc_url( admin_url( 'plugin-install.php?s=advanced-custom-fields&tab=search&type=term' ) ) . '">Advanced Custom Fields</a> plugin to edit the landing page content. Until then, the page is showing built-in default copy.</p></div>';
+}
+add_action( 'admin_notices', 'wildcat_growth_acf_admin_notice' );
+
+/**
+ * Get a landing-page field value via ACF, falling back to a literal default
+ * if ACF isn't active yet (keeps the page from breaking before the plugin
+ * is installed).
+ *
+ * @param string $selector Field name.
+ * @param int    $post_id  Post ID the field is attached to.
+ * @param mixed  $default  Fallback value.
+ * @return mixed
+ */
+function wl_field( $selector, $post_id, $default = '' ) {
+	if ( function_exists( 'get_field' ) ) {
+		$value = get_field( $selector, $post_id );
+		if ( '' !== $value && null !== $value ) {
+			return $value;
+		}
+	}
+	return $default;
+}
+
+/**
+ * Resolve the post ID whose ACF fields should back the landing page —
+ * the site's configured static front page when rendered via front-page.php,
+ * or the current page ID when rendered via the assignable page template.
+ *
+ * @return int
+ */
+function wildcat_growth_landing_post_id() {
+	if ( is_front_page() && ! is_home() ) {
+		$front_id = (int) get_option( 'page_on_front' );
+		if ( $front_id ) {
+			return $front_id;
+		}
+	}
+	return get_queried_object_id();
+}
+
+/**
+ * Split a "one item per line" textarea field into a clean array.
+ *
+ * @param string $text Raw textarea value.
+ * @return array
+ */
+function wildcat_growth_lines_to_array( $text ) {
+	$lines = preg_split( '/\r\n|\r|\n/', (string) $text );
+	$lines = array_map( 'trim', $lines );
+	return array_values( array_filter( $lines, 'strlen' ) );
+}
+
+/**
  * Register the standalone landing page template so it can be assigned to any Page.
  */
 function wildcat_growth_page_templates( $templates ) {

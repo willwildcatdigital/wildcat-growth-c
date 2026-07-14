@@ -3,9 +3,11 @@
  * Wildcat Lite landing page content.
  *
  * Recreated from the design handoff (design_handoff_wildcat_lite_landing).
- * Copy/pricing/testimonials are hardcoded below for now — a good next step
- * is moving these into ACF fields or the block editor so they're editable
- * without touching code.
+ * All copy/pricing/testimonials below come from ACF fields (see
+ * inc/acf-fields.php) attached to whichever Page renders this — editors
+ * change everything from the Page edit screen in wp-admin, no code
+ * changes needed. The literal strings here are just fallback defaults
+ * used if ACF isn't installed/active yet.
  *
  * @package WildcatGrowth
  */
@@ -14,133 +16,112 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$marquee_items = array_fill( 0, 2, array( 'LOCAL TRADES', 'RETAIL', 'HOSPITALITY', 'PROFESSIONAL SERVICES', 'HEALTH & BEAUTY', 'CONSTRUCTION', 'ECOMMERCE STARTUPS' ) );
-$marquee_items = array_merge( ...$marquee_items );
+$landing_id = wildcat_growth_landing_post_id();
 
-$why_cards = array(
-	array(
-		'num'   => '01',
-		'title' => 'Fixed, honest scope',
-		'body'  => 'You know exactly what you get each month — no vague "strategy hours" billed at an unclear rate.',
-	),
-	array(
-		'num'   => '02',
-		'title' => 'No long contracts',
-		'body'  => 'Month-to-month by default. We earn your business every month, not just at renewal.',
-	),
-	array(
-		'num'   => '03',
-		'title' => 'Built for small teams',
-		'body'  => 'Reports and calls are written for business owners, not marketing directors — plain English, no jargon.',
-	),
-	array(
-		'num'   => '04',
-		'title' => 'Same expertise, leaner delivery',
-		'body'  => "Backed by the team behind Wildcat Digital's award-winning SEO work, just packaged for a smaller budget.",
-	),
-);
+// --- Hero -----------------------------------------------------------
+$hero_eyebrow      = wl_field( 'hero_eyebrow', $landing_id, 'SEO built for businesses under 10 people' );
+$hero_heading      = wl_field( 'hero_heading', $landing_id, "Punch above your weight —\nwithout the agency price tag." );
+$hero_paragraph    = wl_field( 'hero_paragraph', $landing_id, 'Wildcat Lite is straightforward SEO for small businesses: no lock-in contracts, no jargon-filled reports, no six-month minimums. A new SEO-optimised website plus ongoing SEO, from £99/month.' );
+$hero_cta_primary  = wl_field( 'hero_cta_primary', $landing_id, 'Get your free audit' );
+$hero_cta_secondary = wl_field( 'hero_cta_secondary', $landing_id, 'See plans & pricing' );
 
-$steps = array(
-	array(
-		'n'     => '01',
-		'title' => 'Free audit',
-		'body'  => 'We review your site and search visibility, and tell you honestly whether SEO is worth it yet.',
-	),
-	array(
-		'n'     => '02',
-		'title' => 'Pick a plan',
-		'body'  => 'Choose Starter, Growth, or Momentum based on your budget and ambition — upgrade or downgrade any time.',
-	),
-	array(
-		'n'     => '03',
-		'title' => 'We get to work',
-		'body'  => 'Technical fixes, on-page optimisation, and content go live within your first month.',
-	),
-	array(
-		'n'     => '04',
-		'title' => 'Monthly reporting',
-		'body'  => 'A plain-English report and a chance to ask questions — no dashboards to decode yourself.',
-	),
-);
+$hero_stats = array();
+for ( $i = 1; $i <= 3; $i++ ) {
+	$hero_stats[] = array(
+		'value' => wl_field( "hero_stat_{$i}_value", $landing_id, '' ),
+		'label' => wl_field( "hero_stat_{$i}_label", $landing_id, '' ),
+	);
+}
 
-$plans = array(
-	array(
-		'name'     => 'Starter',
-		'desc'     => 'A new SEO-optimised website, done right from day one.',
-		'price'    => 99,
-		'featured' => false,
-		'features' => array(
-			'New SEO-optimised website',
-			'Google Business Profile management',
-			'Monthly plain-English report',
-		),
-	),
-	array(
-		'name'     => 'Growth',
-		'desc'     => 'The most popular choice for local businesses.',
-		'price'    => 295,
-		'featured' => true,
-		'features' => array(
-			'Everything in Starter',
-			'One proactive SEO deliverable per month',
-			'e.g. blog post, landing page improvements, content optimisation, or advanced SEO feature',
-			'Monthly call with your account manager',
-		),
-	),
-	array(
-		'name'     => 'Momentum',
-		'desc'     => 'For businesses ready to push harder.',
-		'price'    => 495,
-		'featured' => false,
-		'features' => array(
-			'Everything in Starter',
-			'1 SEO blog post per month',
-			'1 additional SEO deliverable per month',
-			'Priority support',
-		),
-	),
-);
+$hero_image             = wl_field( 'hero_image', $landing_id, '' );
+$hero_placeholder_label = wl_field( 'hero_placeholder_label', $landing_id, 'small business owner, workshop/storefront' );
+$hero_badge_percentage  = wl_field( 'hero_badge_percentage', $landing_id, '+68%' );
+$hero_badge_title       = wl_field( 'hero_badge_title', $landing_id, 'Organic traffic, 6 months' );
+$hero_badge_subtitle    = wl_field( 'hero_badge_subtitle', $landing_id, 'Local trades client, Sheffield' );
+$hero_corner_badge      = wl_field( 'hero_corner_badge', $landing_id, 'from Wildcat Digital' );
 
-$testimonials = array(
-	array(
-		'quote' => 'I have really enjoyed working with Wildcat Digital. We work with them for their SEO expertise and we have seen great results.',
-		'name'  => 'Michael Oszmann',
-		'role'  => 'Client',
-	),
-	array(
-		'quote' => 'The whole of the Wildcat team also reflect the above. Each add their expertise in an easy to understand and very approachable way.',
-		'name'  => 'Majid Bani',
-		'role'  => 'Client',
-	),
-	array(
-		'quote' => 'They level with you to make the process so much easier to digest. The results speak for themselves, thank you for all your hard work.',
-		'name'  => 'Valor Property Maintenance',
-		'role'  => 'Client',
-	),
-);
+// --- Marquee ------------------------------------------------------------
+$marquee_raw   = wl_field( 'marquee_items', $landing_id, "LOCAL TRADES\nRETAIL\nHOSPITALITY\nPROFESSIONAL SERVICES\nHEALTH & BEAUTY\nCONSTRUCTION\nECOMMERCE STARTUPS" );
+$marquee_items = wildcat_growth_lines_to_array( $marquee_raw );
+$marquee_items = array_merge( $marquee_items, $marquee_items ); // duplicate for a seamless scroll loop.
 
-$faqs = array(
-	array(
-		'q' => 'Why is this cheaper than a normal SEO agency?',
-		'a' => 'Wildcat Lite runs fixed, templated packages rather than bespoke strategy work — that lets us keep delivery efficient and pass the saving on. You get the same specialists behind Wildcat Digital, working a leaner, more focused scope.',
-	),
-	array(
-		'q' => 'Is there a minimum contract?',
-		'a' => "No. Everything is month-to-month. We ask for 30 days' notice to cancel, simply so we can hand things over cleanly.",
-	),
-	array(
-		'q' => 'Will I get a dedicated account manager?',
-		'a' => 'Yes, on Growth and Momentum plans. Starter clients get a named point of contact and a monthly report.',
-	),
-	array(
-		'q' => 'How fast will I see results?',
-		'a' => 'SEO takes time to compound — most clients see meaningful movement in rankings and traffic within 3-6 months, with early technical wins often visible sooner.',
-	),
-	array(
-		'q' => 'What if I outgrow Wildcat Lite?',
-		'a' => "Great problem to have. We'll happily introduce you to the full Wildcat Digital team for a bespoke strategy once your budget and ambitions grow.",
-	),
-);
+// --- Why Wildcat Lite -----------------------------------------------------
+$why_eyebrow   = wl_field( 'why_eyebrow', $landing_id, 'Why Wildcat Lite exists' );
+$why_heading   = wl_field( 'why_heading', $landing_id, "Most SEO agencies are built for £1m+ businesses. You're not one — yet." );
+$why_paragraph = wl_field( 'why_paragraph', $landing_id, "Our sister agency, Wildcat Digital, works with growing and enterprise brands on £2k+/month retainers. Wildcat Lite is a separate, leaner service — same team's expertise, distilled into a fixed-scope package that actually makes sense for a five-person business, a solo tradesperson, or a shop with one location. Every package starts with a new SEO-optimised website built for you, then keeps working in the background. No strategy decks. No 12-month contracts." );
+
+$why_cards = array();
+for ( $i = 1; $i <= 4; $i++ ) {
+	$why_cards[] = array(
+		'num'   => wl_field( "why_card_{$i}_num", $landing_id, sprintf( '%02d', $i ) ),
+		'title' => wl_field( "why_card_{$i}_title", $landing_id, '' ),
+		'body'  => wl_field( "why_card_{$i}_body", $landing_id, '' ),
+	);
+}
+
+// --- How It Works ---------------------------------------------------------
+$how_eyebrow = wl_field( 'how_eyebrow', $landing_id, 'How it works' );
+$how_heading = wl_field( 'how_heading', $landing_id, 'Four steps, no surprises' );
+
+$steps = array();
+for ( $i = 1; $i <= 4; $i++ ) {
+	$steps[] = array(
+		'n'     => wl_field( "step_{$i}_num", $landing_id, sprintf( '%02d', $i ) ),
+		'title' => wl_field( "step_{$i}_title", $landing_id, '' ),
+		'body'  => wl_field( "step_{$i}_body", $landing_id, '' ),
+	);
+}
+
+// --- Plans ------------------------------------------------------------------
+$plans_eyebrow    = wl_field( 'plans_eyebrow', $landing_id, 'Plans & pricing' );
+$plans_heading    = wl_field( 'plans_heading', $landing_id, 'Simple pricing, no hidden scope' );
+$plans_subheading = wl_field( 'plans_subheading', $landing_id, 'Fixed monthly fee. Month-to-month, cancel any time.' );
+
+$plans = array();
+for ( $i = 1; $i <= 3; $i++ ) {
+	$plans[] = array(
+		'name'     => wl_field( "plan_{$i}_name", $landing_id, '' ),
+		'desc'     => wl_field( "plan_{$i}_desc", $landing_id, '' ),
+		'price'    => wl_field( "plan_{$i}_price", $landing_id, 0 ),
+		'featured' => function_exists( 'get_field' ) ? (bool) get_field( "plan_{$i}_featured", $landing_id ) : ( 2 === $i ),
+		'features' => wildcat_growth_lines_to_array( wl_field( "plan_{$i}_features", $landing_id, '' ) ),
+	);
+}
+
+// --- Results / Testimonials --------------------------------------------
+$proof_eyebrow = wl_field( 'proof_eyebrow', $landing_id, 'Real results' );
+$proof_heading = wl_field( 'proof_heading', $landing_id, 'What our clients say' );
+
+$testimonials = array();
+for ( $i = 1; $i <= 3; $i++ ) {
+	$testimonials[] = array(
+		'quote' => wl_field( "testimonial_{$i}_quote", $landing_id, '' ),
+		'name'  => wl_field( "testimonial_{$i}_name", $landing_id, '' ),
+		'role'  => wl_field( "testimonial_{$i}_role", $landing_id, '' ),
+	);
+}
+
+// --- FAQ -------------------------------------------------------------------
+$faq_eyebrow = wl_field( 'faq_eyebrow', $landing_id, 'FAQ' );
+$faq_heading = wl_field( 'faq_heading', $landing_id, 'Questions, answered' );
+
+$faqs = array();
+for ( $i = 1; $i <= 5; $i++ ) {
+	$faqs[] = array(
+		'q' => wl_field( "faq_{$i}_question", $landing_id, '' ),
+		'a' => wl_field( "faq_{$i}_answer", $landing_id, '' ),
+	);
+}
+
+// --- Contact -----------------------------------------------------------
+$contact_heading   = wl_field( 'contact_heading', $landing_id, 'Get your free, no-obligation SEO audit' );
+$contact_paragraph = wl_field( 'contact_paragraph', $landing_id, "Tell us about your business and we'll send back a plain-English breakdown of where you're losing traffic — and what it'd take to fix it." );
+$contact_address   = wl_field( 'contact_address', $landing_id, 'Workstation, Paternoster Row, Sheffield S1 2BX' );
+$contact_phone     = wl_field( 'contact_phone', $landing_id, '0114 312 3641' );
+
+// --- Footer --------------------------------------------------------------
+$footer_tagline = wl_field( 'footer_tagline', $landing_id, '— a Wildcat Digital service' );
+$footer_rights  = wl_field( 'footer_rights', $landing_id, 'Wildcat Digital Ltd. All rights reserved.' );
 
 // phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only status flag from our own redirect.
 $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslash( $_GET['audit_request'] ) ) : '';
@@ -161,7 +142,7 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 			<a href="#proof">Results</a>
 			<a href="#faq">FAQ</a>
 		</div>
-		<a href="#contact" class="wl-btn-pill-dark">Get your free audit</a>
+		<a href="#contact" class="wl-btn-pill-dark"><?php echo esc_html( $hero_cta_primary ); ?></a>
 	</nav>
 
 	<!-- HERO -->
@@ -169,44 +150,41 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 		<div>
 			<div class="wl-eyebrow-pill">
 				<span class="wl-eyebrow-dot"></span>
-				SEO built for businesses under 10 people
+				<?php echo esc_html( $hero_eyebrow ); ?>
 			</div>
-			<h1 class="wl-h1">Punch above your weight —<br>without the agency price tag.</h1>
-			<p class="wl-hero-p">Wildcat Lite is straightforward SEO for small businesses: no lock-in contracts, no jargon-filled reports, no six-month minimums. A new SEO-optimised website plus ongoing SEO, from £99/month.</p>
+			<h1 class="wl-h1"><?php echo nl2br( esc_html( $hero_heading ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- nl2br output of already-escaped text. ?></h1>
+			<p class="wl-hero-p"><?php echo esc_html( $hero_paragraph ); ?></p>
 			<div class="wl-hero-ctas">
-				<a href="#contact" class="wl-btn-solid">Get your free audit</a>
-				<a href="#plans" class="wl-btn-link">See plans &amp; pricing</a>
+				<a href="#contact" class="wl-btn-solid"><?php echo esc_html( $hero_cta_primary ); ?></a>
+				<a href="#plans" class="wl-btn-link"><?php echo esc_html( $hero_cta_secondary ); ?></a>
 			</div>
 			<div class="wl-hero-stats">
-				<div>
-					<div class="wl-stat-num">£99</div>
-					<div class="wl-stat-label">starting monthly</div>
-				</div>
-				<div>
-					<div class="wl-stat-num">No lock-in</div>
-					<div class="wl-stat-label">cancel any month</div>
-				</div>
-				<div>
-					<div class="wl-stat-num">14 days</div>
-					<div class="wl-stat-label">to your first audit</div>
-				</div>
+				<?php foreach ( $hero_stats as $stat ) : ?>
+					<?php if ( '' === $stat['value'] && '' === $stat['label'] ) { continue; } ?>
+					<div>
+						<div class="wl-stat-num"><?php echo esc_html( $stat['value'] ); ?></div>
+						<div class="wl-stat-label"><?php echo esc_html( $stat['label'] ); ?></div>
+					</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 		<div class="wl-hero-right">
-			<div class="wl-hero-image">
-				<div class="wl-hero-image-label">
-					<span>PHOTO</span>
-					<span>small business owner, workshop/storefront</span>
-				</div>
+			<div class="wl-hero-image"<?php echo $hero_image ? ' style="background-image:url(' . esc_url( $hero_image ) . ');background-size:cover;background-position:center;"' : ''; ?>>
+				<?php if ( ! $hero_image ) : ?>
+					<div class="wl-hero-image-label">
+						<span>PHOTO</span>
+						<span><?php echo esc_html( $hero_placeholder_label ); ?></span>
+					</div>
+				<?php endif; ?>
 				<div class="wl-hero-stat-card">
-					<div class="wl-hero-stat-badge">+68%</div>
+					<div class="wl-hero-stat-badge"><?php echo esc_html( $hero_badge_percentage ); ?></div>
 					<div>
-						<div class="wl-hero-stat-title">Organic traffic, 6 months</div>
-						<div class="wl-hero-stat-sub">Local trades client, Sheffield</div>
+						<div class="wl-hero-stat-title"><?php echo esc_html( $hero_badge_title ); ?></div>
+						<div class="wl-hero-stat-sub"><?php echo esc_html( $hero_badge_subtitle ); ?></div>
 					</div>
 				</div>
 			</div>
-			<div class="wl-hero-badge">from Wildcat Digital</div>
+			<div class="wl-hero-badge"><?php echo esc_html( $hero_corner_badge ); ?></div>
 		</div>
 	</div>
 
@@ -223,10 +201,10 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 	<div class="wl-why">
 		<div class="wl-why-intro">
 			<div>
-				<div class="wl-eyebrow">Why Wildcat Lite exists</div>
-				<h2 class="wl-h2">Most SEO agencies are built for £1m+ businesses. You're not one — yet.</h2>
+				<div class="wl-eyebrow"><?php echo esc_html( $why_eyebrow ); ?></div>
+				<h2 class="wl-h2"><?php echo esc_html( $why_heading ); ?></h2>
 			</div>
-			<p class="wl-why-p">Our sister agency, Wildcat Digital, works with growing and enterprise brands on £2k+/month retainers. Wildcat Lite is a separate, leaner service — same team's expertise, distilled into a fixed-scope package that actually makes sense for a five-person business, a solo tradesperson, or a shop with one location. Every package starts with a new SEO-optimised website built for you, then keeps working in the background. No strategy decks. No 12-month contracts.</p>
+			<p class="wl-why-p"><?php echo esc_html( $why_paragraph ); ?></p>
 		</div>
 
 		<div class="wl-why-grid">
@@ -243,8 +221,8 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 	<!-- HOW IT WORKS -->
 	<div id="how" class="wl-how">
 		<div class="wl-section-head">
-			<div class="wl-eyebrow">How it works</div>
-			<h2 class="wl-h2">Four steps, no surprises</h2>
+			<div class="wl-eyebrow"><?php echo esc_html( $how_eyebrow ); ?></div>
+			<h2 class="wl-h2"><?php echo esc_html( $how_heading ); ?></h2>
 		</div>
 		<div class="wl-how-grid">
 			<?php foreach ( $steps as $step ) : ?>
@@ -261,9 +239,9 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 	<div id="plans" class="wl-plans">
 		<div class="wl-plans-inner">
 			<div class="wl-plans-head">
-				<div class="wl-eyebrow wl-eyebrow--light">Plans &amp; pricing</div>
-				<h2 class="wl-h2">Simple pricing, no hidden scope</h2>
-				<p class="wl-plans-sub">Fixed monthly fee. Month-to-month, cancel any time.</p>
+				<div class="wl-eyebrow wl-eyebrow--light"><?php echo esc_html( $plans_eyebrow ); ?></div>
+				<h2 class="wl-h2"><?php echo esc_html( $plans_heading ); ?></h2>
+				<p class="wl-plans-sub"><?php echo esc_html( $plans_subheading ); ?></p>
 			</div>
 			<div class="wl-plans-grid">
 				<?php foreach ( $plans as $plan ) : ?>
@@ -294,8 +272,8 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 	<!-- PROOF -->
 	<div id="proof" class="wl-proof">
 		<div class="wl-section-head">
-			<div class="wl-eyebrow">Real results</div>
-			<h2 class="wl-h2">What our clients say</h2>
+			<div class="wl-eyebrow"><?php echo esc_html( $proof_eyebrow ); ?></div>
+			<h2 class="wl-h2"><?php echo esc_html( $proof_heading ); ?></h2>
 		</div>
 		<div class="wl-proof-grid">
 			<?php foreach ( $testimonials as $t ) : ?>
@@ -311,8 +289,8 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 	<!-- FAQ -->
 	<div id="faq" class="wl-faq">
 		<div class="wl-section-head">
-			<div class="wl-eyebrow">FAQ</div>
-			<h2 class="wl-h2">Questions, answered</h2>
+			<div class="wl-eyebrow"><?php echo esc_html( $faq_eyebrow ); ?></div>
+			<h2 class="wl-h2"><?php echo esc_html( $faq_heading ); ?></h2>
 		</div>
 		<?php foreach ( $faqs as $faq ) : ?>
 			<div class="wl-faq-item">
@@ -329,11 +307,11 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 	<div id="contact" class="wl-contact">
 		<div class="wl-contact-inner">
 			<div>
-				<h2 class="wl-contact-h2">Get your free, no-obligation SEO audit</h2>
-				<p class="wl-contact-p">Tell us about your business and we'll send back a plain-English breakdown of where you're losing traffic — and what it'd take to fix it.</p>
+				<h2 class="wl-contact-h2"><?php echo esc_html( $contact_heading ); ?></h2>
+				<p class="wl-contact-p"><?php echo esc_html( $contact_paragraph ); ?></p>
 				<div class="wl-contact-details">
-					<div class="wl-contact-detail"><span class="wl-contact-dot">●</span> Workstation, Paternoster Row, Sheffield S1 2BX</div>
-					<div class="wl-contact-detail"><span class="wl-contact-dot">●</span> 0114 312 3641</div>
+					<div class="wl-contact-detail"><span class="wl-contact-dot">●</span> <?php echo esc_html( $contact_address ); ?></div>
+					<div class="wl-contact-detail"><span class="wl-contact-dot">●</span> <?php echo esc_html( $contact_phone ); ?></div>
 				</div>
 			</div>
 			<div>
@@ -364,9 +342,9 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 			<div class="wl-footer-brand">
 				<span class="wl-logo-mark wl-logo-mark--sm"><span class="wl-logo-tri"></span></span>
 				<span class="wl-footer-wordmark">Wildcat Lite</span>
-				<span class="wl-footer-sub">— a Wildcat Digital service</span>
+				<span class="wl-footer-sub"><?php echo esc_html( $footer_tagline ); ?></span>
 			</div>
-			<div class="wl-footer-copy">© <?php echo esc_html( gmdate( 'Y' ) ); ?> Wildcat Digital Ltd. All rights reserved.</div>
+			<div class="wl-footer-copy">© <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $footer_rights ); ?></div>
 		</div>
 	</div>
 
