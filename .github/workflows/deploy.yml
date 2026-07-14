@@ -1,0 +1,23 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH into server and deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.CPANEL_SSH_HOST }}
+          username: ${{ secrets.CPANEL_SSH_USERNAME }}
+          key: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.CPANEL_SSH_PORT }}
+          script: |
+            set -e
+            cd ${{ secrets.CPANEL_REPO_PATH }}
+            git pull origin main
+            uapi Git deploy repository_root=${{ secrets.CPANEL_REPO_PATH }} sha=HEAD
