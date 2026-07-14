@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF field group for the Wildcat Lite landing page.
+ * ACF field group for the Wildcat Growth landing page.
  *
  * Registered in code (not built by hand in the ACF UI) so the field
  * structure is version-controlled alongside the theme. Editors fill in
@@ -55,7 +55,7 @@ $fields[] = wl_acf_field( 'hero_heading', 'Headline', 'hero_heading', 'textarea'
 	'instructions'  => 'Line breaks here become <br> in the headline.',
 ) );
 $fields[] = wl_acf_field( 'hero_paragraph', 'Supporting paragraph', 'hero_paragraph', 'textarea', array(
-	'default_value' => 'Wildcat Lite is straightforward SEO for small businesses: no lock-in contracts, no jargon-filled reports, no six-month minimums. A new SEO-optimised website plus ongoing SEO, from £99/month.',
+	'default_value' => 'Wildcat Growth is straightforward SEO for small businesses: no lock-in contracts, no jargon-filled reports, no six-month minimums. A new SEO-optimised website plus ongoing SEO, from £99/month.',
 	'rows'          => 3,
 ) );
 $fields[] = wl_acf_field( 'hero_cta_primary', 'Primary button text', 'hero_cta_primary', 'text', array( 'default_value' => 'Get your free audit' ) );
@@ -88,12 +88,12 @@ $fields[] = wl_acf_field( 'marquee_items', 'Scrolling tags (one per line)', 'mar
 	'rows'          => 7,
 ) );
 
-// --- Why Wildcat Lite ---------------------------------------------------
+// --- Why Wildcat Growth ---------------------------------------------------
 $fields[] = wl_acf_field( 'why_tab', 'Why Us', '', 'tab', array( 'placement' => 'top' ) );
-$fields[] = wl_acf_field( 'why_eyebrow', 'Eyebrow', 'why_eyebrow', 'text', array( 'default_value' => 'Why Wildcat Lite exists' ) );
+$fields[] = wl_acf_field( 'why_eyebrow', 'Eyebrow', 'why_eyebrow', 'text', array( 'default_value' => 'Why Wildcat Growth exists' ) );
 $fields[] = wl_acf_field( 'why_heading', 'Heading', 'why_heading', 'text', array( 'default_value' => "Most SEO agencies are built for £1m+ businesses. You're not one — yet." ) );
 $fields[] = wl_acf_field( 'why_paragraph', 'Paragraph', 'why_paragraph', 'textarea', array(
-	'default_value' => "Our sister agency, Wildcat Digital, works with growing and enterprise brands on £2k+/month retainers. Wildcat Lite is a separate, leaner service — same team's expertise, distilled into a fixed-scope package that actually makes sense for a five-person business, a solo tradesperson, or a shop with one location. Every package starts with a new SEO-optimised website built for you, then keeps working in the background. No strategy decks. No 12-month contracts.",
+	'default_value' => "Our sister agency, Wildcat Digital, works with growing and enterprise brands on £2k+/month retainers. Wildcat Growth is a separate, leaner service — same team's expertise, distilled into a fixed-scope package that actually makes sense for a five-person business, a solo tradesperson, or a shop with one location. Every package starts with a new SEO-optimised website built for you, then keeps working in the background. No strategy decks. No 12-month contracts.",
 	'rows'          => 4,
 ) );
 
@@ -185,11 +185,11 @@ $fields[] = wl_acf_field( 'faq_eyebrow', 'Eyebrow', 'faq_eyebrow', 'text', array
 $fields[] = wl_acf_field( 'faq_heading', 'Heading', 'faq_heading', 'text', array( 'default_value' => 'Questions, answered' ) );
 
 $faq_defaults = array(
-	1 => array( 'Why is this cheaper than a normal SEO agency?', 'Wildcat Lite runs fixed, templated packages rather than bespoke strategy work — that lets us keep delivery efficient and pass the saving on. You get the same specialists behind Wildcat Digital, working a leaner, more focused scope.' ),
+	1 => array( 'Why is this cheaper than a normal SEO agency?', 'Wildcat Growth runs fixed, templated packages rather than bespoke strategy work — that lets us keep delivery efficient and pass the saving on. You get the same specialists behind Wildcat Digital, working a leaner, more focused scope.' ),
 	2 => array( 'Is there a minimum contract?', "No. Everything is month-to-month. We ask for 30 days' notice to cancel, simply so we can hand things over cleanly." ),
 	3 => array( 'Will I get a dedicated account manager?', 'Yes, on Growth and Momentum plans. Starter clients get a named point of contact and a monthly report.' ),
 	4 => array( 'How fast will I see results?', 'SEO takes time to compound — most clients see meaningful movement in rankings and traffic within 3-6 months, with early technical wins often visible sooner.' ),
-	5 => array( 'What if I outgrow Wildcat Lite?', "Great problem to have. We'll happily introduce you to the full Wildcat Digital team for a bespoke strategy once your budget and ambitions grow." ),
+	5 => array( 'What if I outgrow Wildcat Growth?', "Great problem to have. We'll happily introduce you to the full Wildcat Digital team for a bespoke strategy once your budget and ambitions grow." ),
 );
 foreach ( $faq_defaults as $i => $vals ) {
 	$fields[] = wl_acf_field( "faq_{$i}_question", "FAQ {$i} question", "faq_{$i}_question", 'text', array( 'default_value' => $vals[0] ) );
@@ -213,7 +213,7 @@ $fields[] = wl_acf_field( 'footer_rights', 'Copyright line (year is added automa
 
 acf_add_local_field_group( array(
 	'key'                   => 'group_wildcat_lite_landing',
-	'title'                 => 'Wildcat Lite Landing Content',
+	'title'                 => 'Wildcat Growth Landing Content',
 	'fields'                => $fields,
 	'location'              => array(
 		array(

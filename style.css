@@ -3,7 +3,7 @@ Theme Name: Wildcat Growth
 Theme URI: https://wildcatdigital.co.uk
 Author: Wildcat Digital
 Author URI: https://wildcatdigital.co.uk
-Description: Custom theme for Wildcat Digital / Wildcat Lite landing pages.
+Description: Custom theme for Wildcat Digital / Wildcat Growth landing pages.
 Version: 1.0.0
 Text Domain: wildcat-growth-c
 Requires at least: 6.0
@@ -42,6 +42,6 @@ img {
 }
 
 ::selection {
-	background: #eec24a;
+	background: #e73c45;
 	color: #141310;
 }

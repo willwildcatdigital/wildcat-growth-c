@@ -1,6 +1,6 @@
 <?php
 /**
- * Wildcat Lite landing page content.
+ * Wildcat Growth landing page content.
  *
  * Recreated from the design handoff (design_handoff_wildcat_lite_landing).
  * All copy/pricing/testimonials below come from ACF fields (see
@@ -21,7 +21,7 @@ $landing_id = wildcat_growth_landing_post_id();
 // --- Hero -----------------------------------------------------------
 $hero_eyebrow      = wl_field( 'hero_eyebrow', $landing_id, 'SEO built for businesses under 10 people' );
 $hero_heading      = wl_field( 'hero_heading', $landing_id, "Punch above your weight —\nwithout the agency price tag." );
-$hero_paragraph    = wl_field( 'hero_paragraph', $landing_id, 'Wildcat Lite is straightforward SEO for small businesses: no lock-in contracts, no jargon-filled reports, no six-month minimums. A new SEO-optimised website plus ongoing SEO, from £99/month.' );
+$hero_paragraph    = wl_field( 'hero_paragraph', $landing_id, 'Wildcat Growth is straightforward SEO for small businesses: no lock-in contracts, no jargon-filled reports, no six-month minimums. A new SEO-optimised website plus ongoing SEO, from £99/month.' );
 $hero_cta_primary  = wl_field( 'hero_cta_primary', $landing_id, 'Get your free audit' );
 $hero_cta_secondary = wl_field( 'hero_cta_secondary', $landing_id, 'See plans & pricing' );
 
@@ -45,10 +45,10 @@ $marquee_raw   = wl_field( 'marquee_items', $landing_id, "LOCAL TRADES\nRETAIL\n
 $marquee_items = wildcat_growth_lines_to_array( $marquee_raw );
 $marquee_items = array_merge( $marquee_items, $marquee_items ); // duplicate for a seamless scroll loop.
 
-// --- Why Wildcat Lite -----------------------------------------------------
-$why_eyebrow   = wl_field( 'why_eyebrow', $landing_id, 'Why Wildcat Lite exists' );
+// --- Why Wildcat Growth -----------------------------------------------------
+$why_eyebrow   = wl_field( 'why_eyebrow', $landing_id, 'Why Wildcat Growth exists' );
 $why_heading   = wl_field( 'why_heading', $landing_id, "Most SEO agencies are built for £1m+ businesses. You're not one — yet." );
-$why_paragraph = wl_field( 'why_paragraph', $landing_id, "Our sister agency, Wildcat Digital, works with growing and enterprise brands on £2k+/month retainers. Wildcat Lite is a separate, leaner service — same team's expertise, distilled into a fixed-scope package that actually makes sense for a five-person business, a solo tradesperson, or a shop with one location. Every package starts with a new SEO-optimised website built for you, then keeps working in the background. No strategy decks. No 12-month contracts." );
+$why_paragraph = wl_field( 'why_paragraph', $landing_id, "Our sister agency, Wildcat Digital, works with growing and enterprise brands on £2k+/month retainers. Wildcat Growth is a separate, leaner service — same team's expertise, distilled into a fixed-scope package that actually makes sense for a five-person business, a solo tradesperson, or a shop with one location. Every package starts with a new SEO-optimised website built for you, then keeps working in the background. No strategy decks. No 12-month contracts." );
 
 $why_cards = array();
 for ( $i = 1; $i <= 4; $i++ ) {
@@ -134,7 +134,7 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 	<nav class="wl-nav">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="wl-logo">
 			<span class="wl-logo-mark"><span class="wl-logo-tri"></span></span>
-			<span class="wl-wordmark">Wildcat <span>Lite</span></span>
+			<span class="wl-wordmark">Wildcat <span>Growth</span></span>
 		</a>
 		<div class="wl-nav-links">
 			<a href="#plans">Plans</a>
@@ -341,7 +341,7 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 		<div class="wl-footer-inner">
 			<div class="wl-footer-brand">
 				<span class="wl-logo-mark wl-logo-mark--sm"><span class="wl-logo-tri"></span></span>
-				<span class="wl-footer-wordmark">Wildcat Lite</span>
+				<span class="wl-footer-wordmark">Wildcat Growth</span>
 				<span class="wl-footer-sub"><?php echo esc_html( $footer_tagline ); ?></span>
 			</div>
 			<div class="wl-footer-copy">© <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $footer_rights ); ?></div>

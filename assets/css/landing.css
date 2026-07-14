@@ -1,4 +1,4 @@
-/* Wildcat Lite landing page styles — recreated from design handoff */
+/* Wildcat Growth landing page styles — recreated from design handoff */
 
 @keyframes wl-marquee {
 	from { transform: translateX(0); }
@@ -57,7 +57,7 @@
 .wl-logo-tri {
 	width: 14px;
 	height: 14px;
-	background: #eec24a;
+	background: #e73c45;
 	clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
 
@@ -117,7 +117,7 @@
 	padding: 7px 16px;
 	font-size: 13px;
 	font-weight: 700;
-	color: #7a5a12;
+	color: #8f2029;
 	margin-bottom: 22px;
 }
 
@@ -125,7 +125,7 @@
 	width: 7px;
 	height: 7px;
 	border-radius: 50%;
-	background: #eec24a;
+	background: #e73c45;
 	display: inline-block;
 }
 
@@ -243,7 +243,7 @@
 	width: 44px;
 	height: 44px;
 	border-radius: 50%;
-	background: #eec24a;
+	background: #e73c45;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -269,7 +269,7 @@
 	position: absolute;
 	top: -16px;
 	right: -16px;
-	background: #eec24a;
+	background: #e73c45;
 	color: #141310;
 	width: 78px;
 	height: 78px;
@@ -322,14 +322,14 @@
 .wl-eyebrow {
 	font-size: 13px;
 	font-weight: 700;
-	color: #a5772c;
+	color: #b8323c;
 	text-transform: uppercase;
 	letter-spacing: .08em;
 	margin-bottom: 14px;
 }
 
 .wl-eyebrow--light {
-	color: #eec24a;
+	color: #e73c45;
 }
 
 .wl-h2 {
@@ -372,7 +372,7 @@
 	margin-bottom: 20px;
 	font-family: 'Archivo', sans-serif;
 	font-weight: 800;
-	color: #eec24a;
+	color: #e73c45;
 	font-size: 16px;
 }
 
@@ -474,7 +474,7 @@
 }
 
 .wl-plan-card--featured {
-	border: 2px solid #eec24a;
+	border: 2px solid #e73c45;
 	transform: scale(1.03);
 }
 
@@ -483,7 +483,7 @@
 	top: -14px;
 	left: 50%;
 	transform: translateX(-50%);
-	background: #eec24a;
+	background: #e73c45;
 	color: #141310;
 	font-size: 12px;
 	font-weight: 800;
@@ -537,7 +537,7 @@
 }
 
 .wl-plan-btn--featured {
-	background: #eec24a;
+	background: #e73c45;
 	color: #141310;
 	border: none;
 }
@@ -559,7 +559,7 @@
 }
 
 .wl-plan-feature-check {
-	color: #eec24a;
+	color: #e73c45;
 	font-weight: 800;
 }
 
@@ -632,7 +632,7 @@
 
 .wl-faq-icon {
 	font-size: 20px;
-	color: #a5772c;
+	color: #b8323c;
 	font-weight: 700;
 	flex-shrink: 0;
 	margin-left: 16px;
@@ -700,7 +700,7 @@
 }
 
 .wl-contact-dot {
-	color: #a5772c;
+	color: #b8323c;
 }
 
 .wl-contact-form {

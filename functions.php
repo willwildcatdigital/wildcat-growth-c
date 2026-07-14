@@ -127,7 +127,7 @@ function wildcat_growth_lines_to_array( $text ) {
  * Register the standalone landing page template so it can be assigned to any Page.
  */
 function wildcat_growth_page_templates( $templates ) {
-	$templates['page-templates/template-wildcat-lite-landing.php'] = __( 'Wildcat Lite Landing', 'wildcat-growth-c' );
+	$templates['page-templates/template-wildcat-lite-landing.php'] = __( 'Wildcat Growth Landing', 'wildcat-growth-c' );
 	return $templates;
 }
 add_filter( 'theme_page_templates', 'wildcat_growth_page_templates' );
@@ -162,7 +162,7 @@ function wildcat_growth_handle_audit_request() {
 
 	$to      = get_option( 'admin_email' );
 	$subject = sprintf( 'New free audit request from %s %s', $first_name, $last_name );
-	$body    = "New audit request via the Wildcat Lite landing page:\n\n"
+	$body    = "New audit request via the Wildcat Growth landing page:\n\n"
 		. "Name: {$first_name} {$last_name}\n"
 		. "Email: {$email}\n"
 		. "Website: {$website_url}\n\n"

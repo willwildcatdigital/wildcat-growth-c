@@ -1,6 +1,6 @@
 <?php
 /**
- * Front page — renders the Wildcat Lite landing page by default.
+ * Front page — renders the Wildcat Growth landing page by default.
  *
  * @package WildcatGrowth
  */

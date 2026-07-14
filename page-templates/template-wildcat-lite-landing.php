@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Wildcat Lite Landing
+ * Template Name: Wildcat Growth Landing
  *
  * Assignable page template that renders the same landing page as
  * front-page.php — use this if the landing page should live on a page
