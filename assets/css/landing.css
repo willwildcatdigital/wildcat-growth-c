@@ -85,6 +85,19 @@
 	font-weight: 600;
 	color: #4a4638;
 	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wl-nav-links li {
+	list-style: none;
+	margin: 0;
+}
+
+.wl-nav-links a.current,
+.wl-nav-links li.current-menu-item > a {
+	color: #141310;
 }
 
 .wl-btn-pill-dark {
@@ -792,6 +805,129 @@
 .wl-footer-copy {
 	font-size: 13px;
 	color: #8a8578;
+}
+
+/* GENERIC PAGES (About, Services, etc.) */
+.wl-page {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 96px 56px;
+}
+
+.wl-page-hero {
+	margin-bottom: 40px;
+}
+
+.wl-page-title {
+	margin-bottom: 0;
+}
+
+.wl-page-thumb {
+	margin-bottom: 40px;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.wl-page-thumb img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Basic prose styling for the_content() output. */
+.wl-page-content {
+	font-size: 16px;
+	line-height: 1.7;
+	color: #332f26;
+}
+
+.wl-page-content h2 {
+	font-size: clamp(22px, 2.6vw, 30px);
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	margin: 40px 0 16px;
+}
+
+.wl-page-content h3 {
+	font-size: 20px;
+	font-weight: 700;
+	margin: 32px 0 12px;
+}
+
+.wl-page-content p {
+	margin: 0 0 20px;
+}
+
+.wl-page-content a {
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.wl-page-content ul,
+.wl-page-content ol {
+	margin: 0 0 20px;
+	padding-left: 24px;
+}
+
+.wl-page-content li {
+	margin-bottom: 8px;
+}
+
+.wl-page-content img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 14px;
+}
+
+.wl-page-content blockquote {
+	border-left: 3px solid #e73c45;
+	margin: 24px 0;
+	padding: 4px 0 4px 20px;
+	color: #5a5648;
+	font-style: italic;
+}
+
+/* BLOG */
+.wl-blog-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 32px;
+}
+
+.wl-blog-card-thumb {
+	display: block;
+	border-radius: 14px;
+	overflow: hidden;
+	margin-bottom: 16px;
+}
+
+.wl-blog-card-thumb img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.wl-blog-card-title {
+	font-size: 19px;
+	font-weight: 700;
+	margin: 6px 0 10px;
+}
+
+.wl-blog-card-excerpt {
+	font-size: 14.5px;
+	line-height: 1.6;
+	color: #7a7568;
+	margin-bottom: 12px;
+}
+
+.wl-blog-nav {
+	margin-top: 56px;
+}
+
+.wl-post-footer {
+	margin-top: 48px;
+	padding-top: 24px;
+	border-top: 1px solid #e6e1d3;
 }
 
 /* RESPONSIVE */

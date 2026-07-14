@@ -119,31 +119,10 @@ $contact_paragraph = wl_field( 'contact_paragraph', $landing_id, "Tell us about 
 $contact_address   = wl_field( 'contact_address', $landing_id, 'Workstation, Paternoster Row, Sheffield S1 2BX' );
 $contact_phone     = wl_field( 'contact_phone', $landing_id, '0114 312 3641' );
 
-// --- Footer --------------------------------------------------------------
-$footer_tagline = wl_field( 'footer_tagline', $landing_id, '— a Wildcat Digital service' );
-$footer_rights  = wl_field( 'footer_rights', $landing_id, 'Wildcat Digital Ltd. All rights reserved.' );
-
 // phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only status flag from our own redirect.
 $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslash( $_GET['audit_request'] ) ) : '';
 // phpcs:enable
 ?>
-
-<div class="wl-wrap">
-
-	<!-- NAV -->
-	<nav class="wl-nav">
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="wl-logo">
-			<span class="wl-logo-mark"><span class="wl-logo-tri"></span></span>
-			<span class="wl-wordmark">Wildcat <span>Growth</span></span>
-		</a>
-		<div class="wl-nav-links">
-			<a href="#plans">Plans</a>
-			<a href="#how">How it works</a>
-			<a href="#proof">Results</a>
-			<a href="#faq">FAQ</a>
-		</div>
-		<a href="#contact" class="wl-btn-pill-dark"><?php echo esc_html( $hero_cta_primary ); ?></a>
-	</nav>
 
 	<!-- HERO -->
 	<div class="wl-hero">
@@ -335,17 +314,3 @@ $audit_status = isset( $_GET['audit_request'] ) ? sanitize_text_field( wp_unslas
 			</div>
 		</div>
 	</div>
-
-	<!-- FOOTER -->
-	<div class="wl-footer">
-		<div class="wl-footer-inner">
-			<div class="wl-footer-brand">
-				<span class="wl-logo-mark wl-logo-mark--sm"><span class="wl-logo-tri"></span></span>
-				<span class="wl-footer-wordmark">Wildcat Growth</span>
-				<span class="wl-footer-sub"><?php echo esc_html( $footer_tagline ); ?></span>
-			</div>
-			<div class="wl-footer-copy">© <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $footer_rights ); ?></div>
-		</div>
-	</div>
-
-</div>

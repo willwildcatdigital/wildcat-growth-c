@@ -16,8 +16,50 @@ function wildcat_growth_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+	register_nav_menus( array(
+		'primary' => __( 'Primary Menu', 'wildcat-growth-c' ),
+	) );
 }
 add_action( 'after_setup_theme', 'wildcat_growth_setup' );
+
+/**
+ * Build a link that works from any page: a plain "#anchor" while already on
+ * the homepage (so it just scrolls), or "/#anchor" from anywhere else (so it
+ * navigates back to the homepage first, then jumps to the section).
+ *
+ * @param string $anchor Anchor id without the "#", e.g. 'plans'.
+ * @return string
+ */
+function wildcat_growth_anchor( $anchor ) {
+	if ( is_front_page() && ! is_home() ) {
+		return '#' . $anchor;
+	}
+	return home_url( '/' ) . '#' . $anchor;
+}
+
+/**
+ * Default nav output when no menu has been set up yet in Appearance > Menus
+ * — the same section anchors the landing page always had. Once you create a
+ * menu there (mixing these anchors with real Pages like About/Services/Blog),
+ * that menu takes over automatically.
+ */
+function wildcat_growth_default_nav_fallback() {
+	$items = array(
+		'plans' => 'Plans',
+		'how'   => 'How it works',
+		'proof' => 'Results',
+		'faq'   => 'FAQ',
+	);
+	echo '<ul class="wl-nav-links">';
+	foreach ( $items as $anchor => $label ) {
+		printf(
+			'<li><a href="%1$s">%2$s</a></li>',
+			esc_url( wildcat_growth_anchor( $anchor ) ),
+			esc_html( $label )
+		);
+	}
+	echo '</ul>';
+}
 
 /**
  * Enqueue styles and scripts.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Fallback template (blog index / generic loop).
+ * Blog index / archive fallback.
  *
  * @package WildcatGrowth
  */
@@ -12,27 +12,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main class="wl-wrap" style="padding: 96px 56px;">
-	<?php if ( have_posts() ) : ?>
-		<?php
-		while ( have_posts() ) :
-			the_post();
-			?>
-			<article <?php post_class(); ?> style="max-width: 760px; margin: 0 auto 64px;">
-				<h2 class="wl-h2"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-				<div><?php the_excerpt(); ?></div>
-			</article>
-			<?php
-		endwhile;
+<div class="wl-page">
+	<header class="wl-page-hero">
+		<?php if ( is_home() && ! is_front_page() ) : ?>
+			<h1 class="wl-h1 wl-page-title"><?php single_post_title(); ?></h1>
+		<?php elseif ( is_search() ) : ?>
+			<h1 class="wl-h1 wl-page-title">
+				<?php
+				/* translators: %s: search query. */
+				printf( esc_html__( 'Search results for: %s', 'wildcat-growth-c' ), '<span>' . get_search_query() . '</span>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- query already escaped by get_search_query().
+				?>
+			</h1>
+		<?php elseif ( is_archive() ) : ?>
+			<h1 class="wl-h1 wl-page-title"><?php the_archive_title(); ?></h1>
+		<?php else : ?>
+			<h1 class="wl-h1 wl-page-title">Blog</h1>
+		<?php endif; ?>
+	</header>
 
-		the_posts_navigation();
-	else :
-		?>
+	<?php if ( have_posts() ) : ?>
+		<div class="wl-blog-grid">
+			<?php
+			while ( have_posts() ) :
+				the_post();
+				?>
+				<article <?php post_class( 'wl-blog-card' ); ?>>
+					<?php if ( has_post_thumbnail() ) : ?>
+						<a href="<?php the_permalink(); ?>" class="wl-blog-card-thumb">
+							<?php the_post_thumbnail( 'medium_large' ); ?>
+						</a>
+					<?php endif; ?>
+					<div class="wl-eyebrow"><?php echo esc_html( get_the_date() ); ?></div>
+					<h2 class="wl-blog-card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+					<div class="wl-blog-card-excerpt"><?php the_excerpt(); ?></div>
+					<a href="<?php the_permalink(); ?>" class="wl-btn-link">Read more</a>
+				</article>
+				<?php
+			endwhile;
+			?>
+		</div>
+
+		<div class="wl-blog-nav">
+			<?php the_posts_navigation(); ?>
+		</div>
+	<?php else : ?>
 		<p>Nothing found.</p>
-		<?php
-	endif;
-	?>
-</main>
+	<?php endif; ?>
+</div>
 
 <?php
 get_footer();
